@@ -1,0 +1,14 @@
+<h1>Log in with Google</h1>
+<div #media [hidden]="!(auth.user$ | async)">
+  <div *ngFor="let text of (auth.user$ | async)?.previousText"> 
+    {{ text }}
+  </div>
+</div>
+<div *ngIf="auth.user$ | async as user; else login" >
+  <hr>
+  <button class="button" (click)="auth.signOut()">Sign out</button>
+</div>
+
+<ng-template #login>
+  <button class="button" (click)="auth.googleSignin()">Login with Google</button>
+</ng-template>
